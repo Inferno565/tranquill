@@ -1,15 +1,16 @@
-import './App.css'
-import { Button } from './components/ui/button'
-
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
 function App() {
-
   return (
     <>
-      <Button>
-        Hit me
-    </Button>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
