@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu } from "./Menu";
-import { MenuIcon, User2Icon } from "lucide-react";
+import {User2Icon } from "lucide-react";
+import SideBar from "./SideBar";
 
 export default function NavBar() {
   return (
@@ -12,7 +13,7 @@ export default function NavBar() {
         </div>
         <div className="flex gap-2">
           <User2Icon />
-          <MenuIcon className="md:hidden" />
+          <SideBar/>
         </div>
       </div>
     </>
