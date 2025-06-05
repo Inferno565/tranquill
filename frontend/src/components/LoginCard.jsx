@@ -26,6 +26,7 @@ export default function LoginCard() {
   const handleChange = (evt) => {
     const fieldChanged = evt.target.name;
     const newValue = evt.target.value;
+    // console.log(newValue);
     setfields((currValue) => {
       currValue[fieldChanged] = newValue;
       return { ...currValue };
@@ -33,7 +34,7 @@ export default function LoginCard() {
   };
   return (
     <>
-      <Card className="w-[350px] md:w-[400px] md:h-[400px] bg-transparent shadow-2xl ">
+      <Card className="w-[350px] md:w-[400px] md:h-fit shadow-2xl ">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>Some phrase</CardDescription>
@@ -44,9 +45,8 @@ export default function LoginCard() {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Username</Label>
                 <Input
-                  id="name"
+                  // id="name"
                   placeholder="abc123@example.com"
-                  className="focus:bg-accent border-black"
                   value={fields.username}
                   onChange={handleChange}
                   name="username"
@@ -55,9 +55,8 @@ export default function LoginCard() {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
                 <Input
-                  id="password"
+                  // id="password"
                   placeholder="Enter Your Password"
-                  className="focus:bg-accent border-black"
                   type="password"
                   value={fields.password}
                   onChange={handleChange}
@@ -65,7 +64,7 @@ export default function LoginCard() {
                 />
               </div>
               <Button
-                className=" w-full bg-accent text-accent-foreground"
+                className=" w-full text-accent-foreground"
                 onClick={handlesubmit}>
                 Login
               </Button>
@@ -73,7 +72,14 @@ export default function LoginCard() {
           </form>
         </CardContent>
         <CardFooter>
-          <Button className=" w-full bg-accent text-accent-foreground">
+          <Button className=" w-full text-accent-foreground">
+            <span className="w-6 h-6">
+              <img
+                src="src\assets\Google.png"
+                alt=""
+                className="mix-blend-multiply"
+              />
+            </span>
             Continue with Google
           </Button>
         </CardFooter>
