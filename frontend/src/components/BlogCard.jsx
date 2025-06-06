@@ -23,10 +23,10 @@ export default function BlogCard({ data, key }) {
         <div
           className="w-full h-[250px] bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url(${Image})`,
+            backgroundImage: `url(${data.image})`,
           }}>
-          <div className="bg-white/30 p-4 h-full flex flex-col justify-between">
-            <div className="text-black font-semibold">{data.desc}</div>
+          <div className="bg-black/30 p-4 h-full flex flex-col justify-between">
+            <div className="text-white font-semibold">{data.desc}</div>
             <Button className="w-fit text-black">Read </Button>
           </div>
         </div>
