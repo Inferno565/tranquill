@@ -8,7 +8,7 @@ export default function ExplorePage() {
       title: "Passage of Time",
       author: "John Doe",
       desc: "This is some description",
-      likes: 100,
+      likes: Math.floor(Math.random() * 501),
       shares: 50,
       saves: 20,
     },
@@ -16,7 +16,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -24,7 +24,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -32,7 +32,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -40,7 +40,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -48,7 +48,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -56,7 +56,7 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
@@ -64,11 +64,92 @@ export default function ExplorePage() {
       title: "Deja Vu",
       author: "Rogers Steven",
       desc: "This is some description dhsjhjdhsjhhjsdhsj",
-      likes: 212,
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
+      shares: 20,
+      saves: 20,
+    },
+    {
+      title: "Deja Vu",
+      author: "Rogers Steven",
+      desc: "This is some description dhsjhjdhsjhhjsdhsj",
+      likes: Math.floor(Math.random() * 501),
       shares: 20,
       saves: 20,
     },
   ];
+
   return (
     <>
       <header>
@@ -76,10 +157,12 @@ export default function ExplorePage() {
       </header>
       <main className="p-4 mt-10">
         <h1 className="text-4xl">New Blogs</h1>
-        <div className="grid grid-cols-3 gap-5 mt-7 ">
+        <div className="grid grid-cols-3 gap-5 mt-7 grid-flow-dense">
           {sampleData.map((content, index) => {
             return (
-              <div key={index} className={index === 0 ? "col-span-2" : " "}>
+              <div
+                key={index}
+                className={content.likes > 400 ? "col-span-2" : " "}>
                 <BlogCard data={content} key={index} />
               </div>
             );

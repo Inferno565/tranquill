@@ -32,7 +32,7 @@ export default function BlogCard({ data, key }) {
         </div>
       </CardContent>
       <CardFooter>
-        <div className="w-full flex justify-evenly gap-4">
+        <div className="w-full flex justify-evenly gap-4 text-center">
           <div>
             <Heart />
             {data.likes}
