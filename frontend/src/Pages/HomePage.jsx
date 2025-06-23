@@ -4,9 +4,7 @@ import Image from "../assets/Herobg.jpg";
 export default function HomePage() {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
+
       <main>
         <div
           className=" bg-no-repeat bg-contain bg-fixed"

@@ -116,9 +116,6 @@ export default function ExplorePage() {
 
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
       <main className="p-4 mt-10">
         <h1 className="text-4xl">New Blogs</h1>
         <div className="grid grid-cols-3 gap-5 mt-7 grid-flow-dense ">

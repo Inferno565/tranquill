@@ -4,15 +4,21 @@ import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import ExplorePage from "./Pages/ExplorePage";
+import BlogPage from "./Pages/BlogPage";
+import NavBar from "./components/NavBar";
 function App() {
   return (
     <>
+      <header>
+        <NavBar/>
+      </header>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/explore" element={<ExplorePage/>} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path={"/blog"} element={<BlogPage />} />
         </Routes>
       </Router>
     </>
