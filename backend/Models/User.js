@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    email: {
+    password: {
         type: String,
         required: true,
-        unique: trure,
+        unique: true,
     }
 })
 
-const User = mongoose.model('User', userSchema)
+const user = mongoose.model('user', userSchema)
 
-module.exports = Product
+export default user
