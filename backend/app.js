@@ -1,17 +1,17 @@
 import express from "express";
+import { Router } from "express";
 import dotenv from 'dotenv'
-import connectDB from "./Config/Database.js";
-import user from "./Models/User.js";
-import blog from "./Models/Blog.js";
+import connectDB from "./config/database.js";
+// import user from "./models/user.js";
+// import blog from "./models/blog.js";
 dotenv.config()
-
-const app = express()
+const router = Router()
 const port = process.env.PORT || 3000
+const app = express()
 
 connectDB()
 
-
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
 
     res.send("Working")
 
