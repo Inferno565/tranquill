@@ -4,24 +4,31 @@ import AppError from '../utils/errorHandler.js'
 
 
 export const login = async (req, res, next) => {
-    // const { username, password } = req.body
-    const username = "John Doe"
-    const password = "1234"
+    const { username, password } = req.body
+    console.log(req.body);
+
     if (username && password) {
-        const result = await user.findOne({ username, password })
+        let result = await user.findOne({
+            $or: [{ username: username }, { email: username }]
+        })
         if (!result) {
-            throw new AppError("User Not Found", 400)
+            throw new AppError("Account with this username does not exist", 404)
+        }
+        let checkAuth = await result.comparePassword(password)
+        if (!checkAuth) {
+            res.status(401).json({ message: "Invalid login credentials" })
         }
         res.status(200).json({ message: "Login Succesfull" })
+
     } else { console.log("Please enter username and password"); }
 
 }
 
 export const register = async (req, res, next) => {
-    const username = "John Doe"
-    const password = "1234"
-    if (username && password) {
-        const result = await user.create({ username, password })
+    const { email, password, userName, firstName, lastName } = req.body
+    let _user = { email, password, userName, firstName, lastName }
+    if (email && password) {
+        let result = await user.create(_user)
         if (!result) {
             return new AppError()
         }

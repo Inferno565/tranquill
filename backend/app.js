@@ -12,6 +12,8 @@ dotenv.config({ quiet: true })
 const router = Router()
 const app = express()
 const port = process.env.PORT || 3000
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 connectDB()
 
