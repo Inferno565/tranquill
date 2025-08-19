@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Image from "../assets/login.webp";
 import {
   Card,
   CardContent,
@@ -11,23 +10,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
 
 export default function SignUpCard() {
-  const [data, setdata] = useState({ name: "", username: "", password: "" });
+  // const [data, setdata] = useState({ name: "", username: "", password: "" });
 
-  const handleChange = (evt) => {
-    const field = evt.target.name;
-    const newValue = evt.target.value;
-    setdata((currValue) => {
-      //   console.log(currValue);
-      currValue[field] = newValue;
-      return { ...currValue };
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log("Form Submitted");
+  const onsubmit = (data) => {
     console.log(data);
   };
 
@@ -39,47 +33,70 @@ export default function SignUpCard() {
           <CardDescription>Some phrase</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="grid w-full items-center gap-4">
+          <form onSubmit={handleSubmit(onsubmit)}>
+            <div className="grid w-full items-center gap-2.5">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Enter your name</Label>
-                <Input
-                  name="name"
-                  placeholder="John Doe"
-                  required
-                  value={data.name}
-                  onChange={handleChange}
-                />
+                <div className="flex flex-row gap-1.5">
+                  <div>
+                    <Input
+                      // name="name"
+                      {...register("firstname", { required: "Required Field" })}
+                      placeholder="John"
+                    />
+                    <p className="text-red-600 text-xs">
+                      {errors.firstname?.message}
+                    </p>
+                  </div>
+                  <div>
+                    {" "}
+                    <Input
+                      // name="name"
+                      {...register("lastname", { required: "Required Field" })}
+                      placeholder="Doe"
+                    />
+                    <p className="text-red-600 text-xs">
+                      {errors.lastname?.message}
+                    </p>
+                  </div>
+                </div>
               </div>
+
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Enter your e-mail</Label>
                 <Input
-                  name="username"
                   placeholder="abc123@example.com"
-                  required
-                  value={data.username}
-                  onChange={handleChange}
+                  {...register("email", {
+                    required: "Please enter your email",
+                  })}
                 />
               </div>
+              <p className="text-red-600 text-xs">{errors.email?.message}</p>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
                 <Input
-                  name="password"
-                  placeholder="Min 8 char, with atleast 1 uppercase"
+                  placeholder="Min 8 char, with at least 1 uppercase char"
                   type="password"
-                  required
-                  value={data.password}
-                  onChange={handleChange}
+                  {...register("password", {
+                    required: "Please enter password",
+                  })}
                 />
               </div>
-              {/* <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="password">Confirm Password</Label>
+              <p className="text-red-600 text-xs">{errors.password?.message}</p>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="cPassword">Confirm Password</Label>
                 <Input
-                 name="password"
-                  placeholder="Enter Your Password"
+                  name="cPassword"
+                  placeholder="Confirm Password"
                   type="password"
+                  {...register("cPassword", {
+                    required: "Please confirm Password",
+                  })}
                 />
-              </div> */}
+              </div>
+              <p className="text-red-600 text-xs">
+                {errors.cPassword?.message}
+              </p>
               <Button type="submit" className=" w-full text-accent-foreground">
                 Sign Up
               </Button>
@@ -95,7 +112,7 @@ export default function SignUpCard() {
                 className="mix-blend-multiply"
               />
             </span>
-            Register with Google
+            Continue with Google
           </Button>
         </CardFooter>
       </Card>

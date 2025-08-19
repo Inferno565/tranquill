@@ -12,25 +12,22 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please enter a password"],
         minLength: [6, "Password must be greater than 6 characters."],
     },
-    userName: {
+    username: {
         type: String,
-        required: [true, "Please enter a username"],
         minLength: [5, "Username must be more than 5 Chracters"],
         unique: true
     },
-    firstName: {
+    firstname: {
         type: String,
         required: [true, "Please enter your first name."],
-
     },
-    lastName: {
+    lastname: {
         type: String,
         required: [true, "Please enter your last name."],
     },
     bio: {
         type: String,
     }
-
 })
 
 userSchema.pre("save", async function () {

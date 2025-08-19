@@ -28,8 +28,12 @@ export const login = async (req, res, next) => {
 }
 
 export const register = async (req, res, next) => {
-    const { email, password, userName, firstName, lastName } = req.body
-    let _user = { email, password, userName, firstName, lastName }
+    const { email, password,username, firstname, lastname, bio } = req.body
+    let _user = { email, password, username, firstname, lastname, bio }
+    const checkUser = await user.findOne(_user)
+    if (checkUser) {
+        throw new AppError("An account associated with this email already exists", 409)
+    }
     if (email && password) {
         let result = await user.create(_user)
         if (!result) {
