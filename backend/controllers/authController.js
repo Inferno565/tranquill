@@ -2,10 +2,9 @@ import user from '../models/user.js'
 import AppError from '../utils/errorHandler.js'
 // import catchAsync from "../utils/asyncErrorHandler.js"
 
-
 export const login = async (req, res, next) => {
     const { username, password } = req.body
-    console.log(req.body);
+    // console.log(req.body);
 
     if (username && password) {
         let result = await user.findOne({
@@ -13,12 +12,16 @@ export const login = async (req, res, next) => {
         })
         if (!result) {
             throw new AppError("Account with this username does not exist", 404)
+            // res.status(404).json({ message: "Account with this username does not exist" })
         }
         let checkAuth = await result.comparePassword(password)
         if (!checkAuth) {
-            res.status(401).json({ message: "Invalid login credentials" })
+            throw new AppError("Invalid login credentials", 401)
+            // res.status(401).json({ message: "Invalid login credentials" })
+        } else {
+            res.status(200).json({ message: "Login Succesfull" })
         }
-        res.status(200).json({ message: "Login Succesfull" })
+
 
     } else { console.log("Please enter username and password"); }
 

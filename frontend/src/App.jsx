@@ -6,6 +6,7 @@ import SignUpPage from "./Pages/SignUpPage";
 import ExplorePage from "./Pages/ExplorePage";
 import BlogPage from "./Pages/BlogPage";
 import NavBar from "./components/NavBar";
+import { Toaster, toast } from "sonner";
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
           <Route path={"/blog"} element={<BlogPage />} />
         </Routes>
       </Router>
+      <Toaster richColors position="top-right"/>
     </>
   );
 }
