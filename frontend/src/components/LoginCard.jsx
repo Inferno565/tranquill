@@ -14,9 +14,13 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { EyeIcon, EyeOff } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
 export default function LoginCard() {
+  const [isPasswordVisible, setisPasswordVisible] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -40,6 +44,11 @@ export default function LoginCard() {
       navigate("/");
     }
   };
+
+  const toggleVisiblity = () => {
+    setisPasswordVisible((prev) => !prev);
+  };
+
   return (
     <>
       <Card className="w-[350px] md:w-[400px] md:h-fit shadow-2xl ">
@@ -65,13 +74,22 @@ export default function LoginCard() {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  {...register("password", {
-                    required: "Please enter password",
-                  })}
-                  placeholder="Enter Your Password"
-                  type="password"
-                />
+                <div className="border-1 rounded-md flex items-center ">
+                  <Input
+                    className={"border-0"}
+                    {...register("password", {
+                      required: "Please enter password",
+                    })}
+                    placeholder="Enter Your Password"
+                    type={isPasswordVisible ? "text" : "password"}
+                  />
+                  <Button
+                    type="button"
+                    onClick={toggleVisiblity}
+                    className={"text-foreground"}>
+                    {isPasswordVisible ? <EyeIcon /> : <EyeOff />}
+                  </Button>
+                </div>
                 <p className="text-red-600">{errors.password?.message}</p>
               </div>
               <Button className=" w-full text-accent-foreground">Login</Button>
