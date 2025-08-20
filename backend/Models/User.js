@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         minLength: [5, "Username must be more than 5 Chracters"],
-        unique: [true, "This name is already taken"]
+        unique: [true, "This name is already taken"],
+        default: function () {
+            return `user_${this.id}`
+        }
     },
     firstname: {
         type: String,

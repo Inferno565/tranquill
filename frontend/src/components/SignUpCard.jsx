@@ -63,7 +63,7 @@ export default function SignUpCard() {
           <CardDescription>Some phrase</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onsubmit)}>
+          <form onSubmit={handleSubmit(onsubmit)} autoComplete="off">
             <div className="grid w-full items-center gap-2.5">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Enter your name</Label>
