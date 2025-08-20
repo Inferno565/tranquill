@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <header>
-        <NavBar/>
+        <NavBar />
       </header>
       <Router>
         <Routes>
@@ -22,7 +22,7 @@ function App() {
           <Route path={"/blog"} element={<BlogPage />} />
         </Routes>
       </Router>
-      <Toaster richColors position="top-right"/>
+      <Toaster richColors position="top-right" expand={true} />
     </>
   );
 }

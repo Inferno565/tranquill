@@ -34,11 +34,10 @@ export const register = async (req, res, next) => {
     if (checkUser) {
         throw new AppError("An account associated with this email already exists", 409)
     }
-    if (email && password) {
-        let result = await user.create(_user)
-        if (!result) {
-            return new AppError()
-        }
-        res.status(200).json({ message: "Registration Succesfull" })
-    } else { console.log("Please enter username and password"); }
+    let result = await user.create(_user)
+    if (!result) {
+        return new AppError()
+    }
+    res.status(200).json({ message: "Registration Succesfull" })
+
 }

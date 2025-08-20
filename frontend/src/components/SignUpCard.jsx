@@ -42,8 +42,14 @@ export default function SignUpCard() {
     });
     const result = await res.json();
     if (!res.ok) {
-      const message = result.message;
-      toast.error(message);
+      if (Array.isArray(result.errors)) {
+        result.errors.forEach((msg) => {
+          toast.error(msg);
+        });
+      } else {
+        const message = result.message;
+        toast.error(message);
+      }
     } else {
       navigate("/");
     }
@@ -99,21 +105,23 @@ export default function SignUpCard() {
                 />
               </div>
               <p className="text-red-600 text-xs">{errors.email?.message}</p>
-              <div className="flex flex-col space-y-1.5">
+
+              {/* <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Enter a username</Label>
                 <Input
                   placeholder="John_writes"
                   {...register("username", {
-                    required: "Please enter a username",
+                    // required: "Please enter a username",
                   })}
                 />
               </div>
-              <p className="text-red-600 text-xs">{errors.username?.message}</p>
+              <p className="text-red-600 text-xs">{errors.username?.message}</p> */}
+
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
                 <div className="border-1 rounded-md flex items-center ">
                   <Input
-                    placeholder="Min 8 char, with at least 1 uppercase char"
+                    placeholder="Min 6 char, with at least 1 uppercase char"
                     type={isPasswordVisible ? "text" : "password"}
                     {...register("password", {
                       required: "Please enter password",
