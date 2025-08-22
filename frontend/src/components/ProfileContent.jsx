@@ -1,25 +1,28 @@
 import React from "react";
+import BlogsTab from "./BlogsTab";
+import EditProfileTab from "./EditProfileTab";
+import SettingsTab from "./SettingsTab";
 
 export default function ProfileContent({ activeTab }) {
   switch (activeTab) {
     case "blogs":
       return (
         <>
-          <div>This is ur blogs</div>
+          <BlogsTab />
         </>
       );
       break;
     case "profile":
       return (
         <>
-          <div>This is ur profile</div>
+          <EditProfileTab />
         </>
       );
       break;
     case "settings":
       return (
         <>
-          <div>This is settings</div>
+          <SettingsTab />
         </>
       );
       break;
