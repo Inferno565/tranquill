@@ -13,7 +13,7 @@ import { Bookmark, Heart, Send } from "lucide-react";
 
 export default function BlogCard({ data, key }) {
   return (
-    <Card className="w-full h-full rounded-none shadow-2xl">
+    <Card className="w-full h-full rounded-none shadow-2xl" key={key}>
       <CardHeader>
         <CardTitle>{data.title}</CardTitle>
         <CardDescription>{data.author}</CardDescription>

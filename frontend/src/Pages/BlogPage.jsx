@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Heart, Send, Share2 } from "lucide-react";
+import { BookmarkIcon, Heart, Send, Share2 } from "lucide-react";
 import CommentCard from "@/components/CommentCard";
+import { Separator } from "@/components/ui/separator";
+
 export default function BlogPage() {
   const [isFill, setisFill] = useState(false);
 
   const handleLike = () => {
     setisFill((prev) => !prev);
   };
+
+  const commentSampleData = [
+    {
+      username: "John Doe",
+      comment: "This is a very nice blog",
+    },
+    {
+      username: "Steve Rogers",
+      comment: "Very Good",
+    },
+    {
+      username: "John Does Brother",
+      comment: "Not good",
+    },
+  ];
 
   return (
     <>
@@ -39,7 +56,7 @@ export default function BlogPage() {
               <p className="text-sm">12</p>
             </div>
             <div className="flex flex-row gap-1 items-center">
-              <Send />
+              <BookmarkIcon />
               <p className="text-sm"> 32</p>
             </div>
             <div className="flex flex-row gap-1 items-center">
@@ -68,8 +85,16 @@ export default function BlogPage() {
             quis! Quis, nobis.
           </div>
           <div>
-            <div>
-              <CommentCard/>
+            <h3 className="mb-3">Comments</h3>
+            <div className="flex flex-col gap-1">
+              {commentSampleData.map((content, index) => {
+                return (
+                  <>
+                    <CommentCard key={index} data={content} />
+                    <Separator className="my-4 bg-black" />
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>
