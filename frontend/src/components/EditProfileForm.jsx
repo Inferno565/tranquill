@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -23,8 +23,11 @@ export default function EditProfileForm() {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-              <Label>Bio</Label>
-              <Textarea />
+              <div className="flex flex-row justify-between">
+                <Label>Bio</Label>
+                <Label>Max length: 200 Characters</Label>
+              </div>
+              <Textarea maxlength="200" />
             </div>
 
             <div className="flex flex-col space-y-1.5">
@@ -34,14 +37,14 @@ export default function EditProfileForm() {
             <div className="flex flex-col space-y-1.5">
               <Label>E-mail Address</Label>
               <Input />
-              <div className="flex flex-row gap-2">
+              {/* <div className="flex flex-row gap-2">
                 <Checkbox id="publicMail" />
                 <Label for="publicMail">Share Email Publicly</Label>
               </div>
               <p className="text-sm">
                 *When you share, your mail will be visisble to others as contact
                 information
-              </p>
+              </p> */}
             </div>
 
             <div className="flex flex-col space-y-1.5">

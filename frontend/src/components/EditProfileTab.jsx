@@ -30,9 +30,9 @@ export default function EditProfileTab() {
             <EditProfileForm />
             <Socials />
           </CardContent>
-          <CardFooter>
+          {/* <CardFooter>
             <p className="text-sm">Check Details Before Saving</p>
-          </CardFooter>
+          </CardFooter> */}
         </Card>
       </div>
     </>

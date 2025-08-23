@@ -27,7 +27,7 @@ export default function BlogCard({ data, key }) {
           }}>
           <div className="bg-black/30 p-4 h-full flex flex-col justify-between">
             <div className="text-white font-semibold">{data.desc}</div>
-            <Button className="w-fit text-black">Read </Button>
+            <Button className="w-fit text-white">Read </Button>
           </div>
         </div>
       </CardContent>
