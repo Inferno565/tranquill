@@ -1,5 +1,5 @@
 import "@mdxeditor/editor/style.css";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   MDXEditor,
   headingsPlugin,
@@ -16,14 +16,32 @@ import {
 } from "@mdxeditor/editor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageUpload from "@/components/ImageUpload";
-
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import BlogDisplay from "./BlogDisplay";
 export default function EditBlogPage() {
-  const [content, setContent] = useState("Start writing here...");
+  const [content, setContent] = useState("");
+  const [title, settitle] = useState();
+
+  useEffect(() => {
+    localStorage.setItem("blog", content);
+  }, [content]);
 
   const handlePublish = () => {
     console.log(content);
   };
 
+  const handleOnChange = (newContent) => {
+    setContent(newContent);
+  };
+
+  const handleTChange = (newTitle) => {
+    settitle(newTitle);
+    localStorage.setItem("title", newTitle);
+  };
+  const blogImage = localStorage.getItem("image");
+  const blogTitle = localStorage.getItem("title");
+  const blogContent = localStorage.getItem("blog");
   return (
     <>
       <main className="p-3">
@@ -53,13 +71,21 @@ export default function EditBlogPage() {
             <TabsContent
               value="blog"
               className="p-3 rounded-2xl bg-accent w-5xl mr-auto ml-auto">
+              <div className="flex p-3 gap-3">
+                <Label className="text-lg">Enter your blog title -</Label>
+                <Input
+                  type="text"
+                  className="w-md border-black bg-white"
+                  value={title}
+                  onChange={(e) => handleTChange(e.target.value)}
+                />
+              </div>
               <div className="border-1 border-black rounded-xl bg-white h-fit">
                 <MDXEditor
                   markdown={content}
-                  onChange={setContent}
+                  onChange={handleOnChange}
                   plugins={[
                     headingsPlugin(),
-                    thematicBreakPlugin(),
                     quotePlugin(),
                     listsPlugin(),
                     linkDialogPlugin(),
@@ -86,7 +112,11 @@ export default function EditBlogPage() {
             <TabsContent
               value="preview"
               className="p-3 border-1 rounded-2xl border-black">
-              Blog Preview
+              <BlogDisplay
+                image={blogImage}
+                title={blogTitle}
+                blog={blogContent}
+              />
             </TabsContent>
           </Tabs>
         </div>

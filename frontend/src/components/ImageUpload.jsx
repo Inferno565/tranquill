@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
-import { startsWith } from "zod";
 export default function ImageUpload() {
   const [image, setImage] = useState();
 
@@ -26,11 +25,11 @@ export default function ImageUpload() {
     }
 
     // min file size to be changed
-    if (file.size > 50 * 124) {
-      toast.error("File size cannot exceed 50 KB");
-      e.target.value = "";
-      return;
-    }
+    // if (file.size > 50 * 124) {
+    //   toast.error("File size cannot exceed 50 KB");
+    //   e.target.value = "";
+    //   return;
+    // }
 
     if (!file) {
       toast.error("Error uploading file");
@@ -38,6 +37,7 @@ export default function ImageUpload() {
 
     const url = URL.createObjectURL(file);
     setImage(url);
+    localStorage.setItem("coverImage", url);
   };
 
   return (
