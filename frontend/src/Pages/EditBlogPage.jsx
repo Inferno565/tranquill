@@ -21,9 +21,12 @@ import { Label } from "@/components/ui/label";
 import BlogDisplay from "./BlogDisplay";
 
 export default function EditBlogPage() {
+  const blogImage = localStorage.getItem("image");
+  const blogTitle = localStorage.getItem("title");
+  const blogContent = localStorage.getItem("blog");
 
-  const [content, setContent] = useState("");
-  const [title, settitle] = useState();
+  const [content, setContent] = useState(blogContent);
+  const [title, settitle] = useState(blogTitle);
 
   useEffect(() => {
     localStorage.setItem("blog", content);
@@ -41,11 +44,6 @@ export default function EditBlogPage() {
     settitle(newTitle);
     localStorage.setItem("title", newTitle);
   };
-  const blogImage = localStorage.getItem("image");
-  const blogTitle = localStorage.getItem("title");
-  const blogContent = localStorage.getItem("blog");
-
-
 
   return (
     <>

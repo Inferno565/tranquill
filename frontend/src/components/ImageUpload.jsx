@@ -12,8 +12,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
+
 export default function ImageUpload() {
-  const [image, setImage] = useState();
+  const blogImage = localStorage.getItem("image");
+  const [image, setImage] = useState(blogImage);
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
