@@ -21,6 +21,8 @@ import { Label } from "@/components/ui/label";
 import BlogDisplay from "./BlogDisplay";
 
 export default function EditBlogPage() {
+  //temp fix need to be changed
+
   const blogImage = localStorage.getItem("image");
   const blogTitle = localStorage.getItem("title");
   const blogContent = localStorage.getItem("blog");

@@ -14,6 +14,7 @@ import {
 import { toast } from "sonner";
 
 export default function ImageUpload() {
+  //temp fix need to be changed
   const blogImage = localStorage.getItem("image");
   const [image, setImage] = useState(blogImage);
 
