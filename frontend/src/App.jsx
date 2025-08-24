@@ -13,6 +13,7 @@ import BlogPage from "./Pages/BlogPage";
 import NavBar from "./components/NavBar";
 import { Toaster } from "sonner";
 import ProfilePage from "./Pages/ProfilePage";
+import EditBlogPage from "./Pages/EditBlogPage";
 
 function Layout() {
   const location = useLocation();
@@ -28,6 +29,8 @@ function Layout() {
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/edit" element={<EditBlogPage />} />
+        
       </Routes>
     </>
   );
