@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BookmarkIcon, Heart, Send, Share2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 export default function BlogDisplay({ image, title, blog }) {
   const [isFill, setisFill] = useState(false);
@@ -40,7 +42,10 @@ export default function BlogDisplay({ image, title, blog }) {
           <p className="text-sm"> 32</p>
         </div>{" "}
       </div>
-      <div className="p-3 mr-0 text-justify">{blog}</div>
+      {/* <ReactMarkdown>{blog}</ReactMarkdown> */}
+
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>{blog}</ReactMarkdown>
+      {/* <div className="p-3 mr-0 text-justify">{blog}</div> */}
     </>
   );
 }

@@ -19,7 +19,9 @@ import ImageUpload from "@/components/ImageUpload";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import BlogDisplay from "./BlogDisplay";
+
 export default function EditBlogPage() {
+
   const [content, setContent] = useState("");
   const [title, settitle] = useState();
 
@@ -42,6 +44,9 @@ export default function EditBlogPage() {
   const blogImage = localStorage.getItem("image");
   const blogTitle = localStorage.getItem("title");
   const blogContent = localStorage.getItem("blog");
+
+
+
   return (
     <>
       <main className="p-3">
