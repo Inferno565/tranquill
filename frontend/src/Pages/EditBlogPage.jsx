@@ -14,7 +14,6 @@ import {
   listsPlugin,
   thematicBreakPlugin,
 } from "@mdxeditor/editor";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageUpload from "@/components/ImageUpload";
 
@@ -46,6 +45,7 @@ export default function EditBlogPage() {
                 Preview Blog
               </TabsTrigger>
             </TabsList>
+
             <TabsContent value="image" className="p-3 rounded-2xl">
               <ImageUpload />
             </TabsContent>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Label } from "@/components/ui/label";
 import placeHolder from "@/assets/placeholder.svg";
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
@@ -12,15 +11,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { toast } from "sonner";
+import { startsWith } from "zod";
 export default function ImageUpload() {
   const [image, setImage] = useState();
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setImage(url);
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please enter a valid image format");
+      e.target.value = "";
+      return;
     }
+
+    // min file size to be changed
+    if (file.size > 50 * 124) {
+      toast.error("File size cannot exceed 50 KB");
+      e.target.value = "";
+      return;
+    }
+
+    if (!file) {
+      toast.error("Error uploading file");
+    }
+
+    const url = URL.createObjectURL(file);
+    setImage(url);
   };
 
   return (
