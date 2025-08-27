@@ -20,10 +20,10 @@ export default function EditProfileTab() {
           <CardHeader className="flex flex-row gap-6 items-center">
             <CardTitle>Personal Details</CardTitle>
             <CardDescription>
-              <Button className="hover:cursor-pointer">
+              {/* <Button className="hover:cursor-pointer">
                 <Edit />
                 Edit
-              </Button>
+              </Button> */}
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row gap-30 align-middl">
