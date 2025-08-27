@@ -6,6 +6,7 @@ import errorMiddleware from './middleware/error.js'
 import cors from "cors"
 // import ErrorHandler from './utils/errorHandler.js'
 import authRoutes from './routes/auth.js'
+import userRoutes from './routes/user.js'
 // import session from "express-session";
 
 
@@ -28,6 +29,7 @@ app.get("/", (req, res, next) => {
 
 
 app.use("/", authRoutes)
+app.use("/", userRoutes)
 app.use(errorMiddleware)
 
 

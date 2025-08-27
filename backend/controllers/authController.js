@@ -4,7 +4,6 @@ import AppError from '../utils/errorHandler.js'
 
 export const login = async (req, res, next) => {
     const { username, password } = req.body
-    // console.log(req.body);
 
     if (username && password) {
         let result = await user.findOne({
@@ -19,9 +18,9 @@ export const login = async (req, res, next) => {
             throw new AppError("Invalid login credentials", 401)
             // res.status(401).json({ message: "Invalid login credentials" })
         } else {
-            res.status(200).json({ message: "Login Succesfull" })
-        }
+            res.status(200).json({ user_id: result._id, message: "Login Succesfull" })
 
+        }
 
     } else { console.log("Please enter username and password"); }
 

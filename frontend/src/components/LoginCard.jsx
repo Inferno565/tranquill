@@ -36,10 +36,14 @@ export default function LoginCard() {
       credentials: "include",
     });
     const result = await res.json();
+    const message = result.message;
     if (!res.ok) {
-      const message = result.message;
       toast.error(message);
     } else {
+      //temp code to be removed
+      sessionStorage.setItem("user", result.user_id);
+      //
+      toast.success(message);
       navigate("/");
     }
   };
