@@ -15,17 +15,36 @@ export default function EditProfileForm() {
     reset,
   } = useForm();
 
-  const data = {
-    firstname: "john",
-    lastname: "doe",
-    bio: "bio",
-    username: "johnny1",
-    email: "johnn123@john.com",
-    password: "12344566",
+  const curr_user = sessionStorage.getItem("user");
+  // const data = {
+  //   firstname: "",
+  //   lastname: "",
+  //   bio: "",
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  // };
+
+  const getUserData = async (user_id) => {
+    const result = await fetch("http://localhost:5000/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: user_id }),
+      credentials: "include",
+    });
+    const res = await result.json();
+    const message = res.message;
+    if (!result.ok) {
+      toast.error(message);
+    } else {
+      console.log("toast fired");
+      toast.success("chal rha hai");
+      reset(res.user);
+    }
   };
 
   useEffect(() => {
-    reset(data);
+    getUserData(curr_user);
   }, []);
 
   useEffect(() => {
