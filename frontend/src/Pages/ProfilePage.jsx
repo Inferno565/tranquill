@@ -15,8 +15,6 @@ import ProfileContent from "@/components/ProfileContent";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
-
-  
   const [isActive, setisActive] = useState("blogs");
   const navigate = useNavigate();
 

@@ -52,6 +52,10 @@ export default function SignUpCard() {
       }
     } else {
       navigate("/");
+      // start of temp code
+      localStorage.setItem("user", result.user_id);
+      localStorage.setItem("auth", result.auth);
+      // eo temp code
     }
   };
 
