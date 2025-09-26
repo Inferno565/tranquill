@@ -16,14 +16,6 @@ export default function EditProfileForm() {
   } = useForm();
 
   const curr_user = sessionStorage.getItem("user");
-  // const data = {
-  //   firstname: "",
-  //   lastname: "",
-  //   bio: "",
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  // };
 
   const getUserData = async (user_id) => {
     const result = await fetch("http://localhost:5000/update", {
@@ -108,7 +100,7 @@ export default function EditProfileForm() {
               </p> */}
             </div>
 
-            <div className="flex flex-col space-y-1.5">
+            {/* <div className="flex flex-col space-y-1.5">
               <Label>Password</Label>
               <Input type="password" {...register("password")} />
             </div>
@@ -116,7 +108,7 @@ export default function EditProfileForm() {
             <div className="flex flex-col space-y-1.5">
               <Label>Confirm Password</Label>
               <Input type="password" />
-            </div>
+            </div> */}
 
             <div className="flex flex-row w-fit gap-3">
               <Button type="submit" className="w-full text-accent-foreground">

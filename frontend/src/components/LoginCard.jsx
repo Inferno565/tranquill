@@ -41,7 +41,8 @@ export default function LoginCard() {
       toast.error(message);
     } else {
       //temp code to be removed
-      sessionStorage.setItem("user", result.user_id);
+      localStorage.setItem("user", result.user_id);
+      localStorage.setItem("token", result.auth);
       //
       toast.success(message);
       navigate("/");
