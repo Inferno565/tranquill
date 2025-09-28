@@ -25,7 +25,7 @@ export const login = async (req, res, next) => {
             // res.status(401).json({ message: "Invalid login credentials" })
         } else {
             const token = createToken(result._id)
-            res.status(200).json({ user_id: result._id, auth: token, message: "Login Succesfull" })
+            res.status(200).json({ user_id: result._id, token: token, message: "Login Succesfull" })
 
         }
 
@@ -45,6 +45,6 @@ export const register = async (req, res, next) => {
         return new AppError()
     }
     const token = createToken(result._id)
-    res.status(200).json({ user_id: result._id, auth: token, message: "Registration Succesfull" })
+    res.status(200).json({ user_id: result._id, token: token, message: "Registration Succesfull" })
 
 }
