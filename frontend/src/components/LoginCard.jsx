@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "../assets/login.webp";
 import {
   Card,
@@ -16,9 +16,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@/Context/AuthContext";
 
 export default function LoginCard() {
   const [isPasswordVisible, setisPasswordVisible] = useState(false);
+  const {dispatch } = useContext(AuthContext);
 
   const {
     register,
@@ -40,12 +42,14 @@ export default function LoginCard() {
     if (!res.ok) {
       toast.error(message);
     } else {
-      //temp code to be removed
       localStorage.setItem("user", result.user_id);
-      localStorage.setItem("token", result.auth);
-      //
-      toast.success(message);
+      localStorage.setItem("token", result.token);
+      dispatch({
+        type: "login",
+        payload: { user: result.user_id, token: result.token },
+      });
       navigate("/");
+      toast.success(message);
     }
   };
 

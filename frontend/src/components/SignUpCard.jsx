@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Card,
   CardContent,
@@ -14,8 +14,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOff } from "lucide-react";
+import { AuthContext } from "@/Context/AuthContext";
 
 export default function SignUpCard() {
+  const { dispatch } = useContext(AuthContext);
+
   const [isPasswordVisible, setisPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -52,9 +55,14 @@ export default function SignUpCard() {
       }
     } else {
       navigate("/");
+      
       // start of temp code
       localStorage.setItem("user", result.user_id);
-      localStorage.setItem("auth", result.auth);
+      localStorage.setItem("auth", result.token);
+      dispatch({
+        type: "signup",
+        payload: { user: result.user_id, token: result.token },
+      });
       // eo temp code
     }
   };
