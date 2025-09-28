@@ -15,7 +15,7 @@ export default function EditProfileForm() {
     reset,
   } = useForm();
 
-  const curr_user = sessionStorage.getItem("user");
+  const curr_user = localStorage.getItem("user");
 
   const getUserData = async (user_id) => {
     const result = await fetch("http://localhost:5000/update", {
@@ -29,8 +29,8 @@ export default function EditProfileForm() {
     if (!result.ok) {
       toast.error(message);
     } else {
-      console.log("toast fired");
-      toast.success("chal rha hai");
+      // console.log("toast fired");
+      // toast.success("chal rha hai");
       reset(res.user);
     }
   };
@@ -42,7 +42,6 @@ export default function EditProfileForm() {
   useEffect(() => {
     const beforeUnload = (e) => {
       if (isDirty) {
-        toast.error("You have unsaved changes");
         e.preventDefault();
         e.returnValue = "";
       }
@@ -56,6 +55,10 @@ export default function EditProfileForm() {
     data.username = "worked";
     toast.success("Profile Updated");
     reset(data);
+  };
+
+  const handleReset = () => {
+    console.log("chal rha");
   };
 
   return (
@@ -115,7 +118,10 @@ export default function EditProfileForm() {
                 Save Changes
               </Button>
 
-              <Button type="reset" className="w-full text-accent-foreground">
+              <Button
+                type="button"
+                onClick={handleReset}
+                className="w-full text-accent-foreground">
                 Cancel
               </Button>
             </div>
