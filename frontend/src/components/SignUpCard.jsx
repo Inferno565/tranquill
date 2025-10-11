@@ -57,11 +57,10 @@ export default function SignUpCard() {
       navigate("/");
       
       // start of temp code
-      localStorage.setItem("user", result.user_id);
       localStorage.setItem("auth", result.token);
       dispatch({
         type: "signup",
-        payload: { user: result.user_id, token: result.token },
+        payload: { token: result.token },
       });
       // eo temp code
     }

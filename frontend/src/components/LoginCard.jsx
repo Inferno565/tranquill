@@ -42,11 +42,10 @@ export default function LoginCard() {
     if (!res.ok) {
       toast.error(message);
     } else {
-      localStorage.setItem("user", result.user_id);
       localStorage.setItem("token", result.token);
       dispatch({
         type: "login",
-        payload: { user: result.user_id, token: result.token },
+        payload: {token: result.token },
       });
       navigate("/");
       toast.success(message);

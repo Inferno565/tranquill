@@ -14,14 +14,12 @@ const authReducer = (state, action) => {
     case actions.SIGN:
       return {
         ...state,
-        user: action.payload.user,
         token: action.payload.token,
       };
       break;
     case actions.LOGOUT:
       return {
         ...state,
-        user: null,
         token: null,
       };
     default:
@@ -32,20 +30,18 @@ const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
-    user: null,
     token: null,
   });
 
   console.log("Authcontext", AuthContext);
 
   useEffect(() => {
-    const currUser = localStorage.getItem("user");
     const currToken = localStorage.getItem("token");
 
-    if (currUser && currToken) {
+    if (currToken) {
       dispatch({
         type: actions.LOGIN,
-        payload: { user: currUser, token: currToken },
+        payload: { token: currToken },
       });
     }
     return () => {

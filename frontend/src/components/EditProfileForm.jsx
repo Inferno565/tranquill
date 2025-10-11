@@ -29,6 +29,8 @@ export default function EditProfileForm() {
     if (!result.ok) {
       toast.error(message);
     } else {
+      // console.log("toast fired");
+      // toast.success("chal rha hai");
       reset(res.user);
     }
   };

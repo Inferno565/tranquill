@@ -1,12 +1,9 @@
 import user from '../models/user.js'
 import AppError from '../utils/errorHandler.js'
 import jwt from 'jsonwebtoken'
-
+import createToken from '../utils/token.js'
 // import catchAsync from "../utils/asyncErrorHandler.js"
 
-const createToken = (_id) => {
-    return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EX })
-}
 
 export const login = async (req, res, next) => {
     const { username, password } = req.body
@@ -25,7 +22,7 @@ export const login = async (req, res, next) => {
             // res.status(401).json({ message: "Invalid login credentials" })
         } else {
             const token = createToken(result._id)
-            res.status(200).json({ user_id: result._id, token: token, message: "Login Succesfull" })
+            res.status(200).json({ token: token, message: "Login Succesfull" })
 
         }
 
@@ -45,6 +42,6 @@ export const register = async (req, res, next) => {
         return new AppError()
     }
     const token = createToken(result._id)
-    res.status(200).json({ user_id: result._id, token: token, message: "Registration Succesfull" })
+    res.status(200).json({ token: token, message: "Registration Succesfull" })
 
 }
