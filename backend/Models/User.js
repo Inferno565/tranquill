@@ -1,5 +1,6 @@
 import mongoose, { model } from "mongoose";
 import bcrypt from "bcrypt"
+import slugify from "slugify";
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -24,9 +25,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: [5, "Username must be more than 5 Chracters"],
         unique: [true, "This name is already taken"],
+        // temp code
         default: function () {
-            return `user_${this.id}`
+            const fullName = this.firstname + " " + this.lastname
+            return slugify(fullName, {
+                lower: true,
+                replacement: "_"
+            })
         }
+        //eo temp code
     },
     firstname: {
         type: String,
