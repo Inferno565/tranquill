@@ -6,8 +6,12 @@ import { Textarea } from "./ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
+import { json } from "zod";
 
 export default function EditProfileForm() {
+  const context = useAuth();
+
   const {
     register,
     formState: { errors, isDirty },
@@ -15,13 +19,15 @@ export default function EditProfileForm() {
     reset,
   } = useForm();
 
-  const curr_user = localStorage.getItem("user");
+  const token = context.token;
 
-  const getUserData = async (user_id) => {
+  const getUserData = async () => {
     const result = await fetch("http://localhost:5000/update", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: user_id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     });
     const res = await result.json();
@@ -29,14 +35,12 @@ export default function EditProfileForm() {
     if (!result.ok) {
       toast.error(message);
     } else {
-      // console.log("toast fired");
-      // toast.success("chal rha hai");
       reset(res.user);
     }
   };
 
   useEffect(() => {
-    getUserData(curr_user);
+    getUserData(token);
   }, []);
 
   useEffect(() => {
@@ -50,10 +54,27 @@ export default function EditProfileForm() {
     return () => window.removeEventListener("beforeunload", beforeUnload);
   }, [isDirty]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    data.username = "worked";
-    toast.success("Profile Updated");
+  const onSubmit = async (data) => {
+    const result = await fetch("http://localhost:5000/update", {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    const res = await result.json();
+    if (!result.ok) {
+      if (Array.isArray(res.errors)) {
+        res.errors.forEach((msg) => {
+          toast.error(msg);
+        });
+      }
+    } else {
+      const message = res.message;
+      toast.success(message);
+    }
     reset(data);
   };
 

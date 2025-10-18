@@ -33,8 +33,6 @@ export const AuthContextProvider = ({ children }) => {
     token: null,
   });
 
-  console.log("Authcontext", AuthContext);
-
   useEffect(() => {
     const currToken = localStorage.getItem("token");
 

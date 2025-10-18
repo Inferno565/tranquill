@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: [5, "Username must be more than 5 Chracters"],
         unique: [true, "This name is already taken"],
-        // temp code
+        
         default: function () {
             const fullName = this.firstname + " " + this.lastname
             return slugify(fullName, {
@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema({
                 replacement: "_"
             })
         }
-        //eo temp code
     },
     firstname: {
         type: String,

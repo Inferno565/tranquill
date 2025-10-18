@@ -17,11 +17,12 @@ import { toast } from "sonner";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@/Context/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function LoginCard() {
   const [isPasswordVisible, setisPasswordVisible] = useState(false);
-  const {dispatch } = useContext(AuthContext);
-
+  // const {dispatch } = useContext(AuthContext);
+  const context = useAuth();
   const {
     register,
     handleSubmit,
@@ -43,9 +44,10 @@ export default function LoginCard() {
       toast.error(message);
     } else {
       localStorage.setItem("token", result.token);
-      dispatch({
+      console.log(result.token);
+      context.dispatch({
         type: "login",
-        payload: {token: result.token },
+        payload: { token: result.token },
       });
       navigate("/");
       toast.success(message);
