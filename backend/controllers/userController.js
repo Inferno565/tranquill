@@ -25,12 +25,11 @@ export const fetchUser = async (req, res, next) => {
 }
 
 export const updateUser = async (req, res, next) => {
-    const data = req.body;
     const authHeader = req.headers.authorization;
     const token = authHeader.split(" ")[1];
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     const id = decoded._id
+    const data = req.body;
     const result = await user.findByIdAndUpdate(id, data, { new: true, runValidators: true })
     if (!result) {
         throw new AppError()

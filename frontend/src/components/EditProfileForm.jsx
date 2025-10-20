@@ -17,8 +17,11 @@ export default function EditProfileForm() {
     formState: { errors, isDirty },
     handleSubmit,
     reset,
+    watch,
   } = useForm();
 
+  const bio = watch("bio", "");
+  const maxLength = 200;
   const token = context.token;
 
   const getUserData = async () => {
@@ -55,7 +58,7 @@ export default function EditProfileForm() {
   }, [isDirty]);
 
   const onSubmit = async (data) => {
-    const result = await fetch("http://localhost:5000/update", {
+    const result = await fetch(`${import.meta.env.VITE_API_URL}update`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -90,30 +93,53 @@ export default function EditProfileForm() {
             <div className="flex flex-row space-x-5">
               <div className="flex flex-col gap-1.5">
                 <Label>First Name</Label>
-                <Input {...register("firstname")} />
+                <Input
+                  {...register("firstname", { required: "Required Field" })}
+                />
+                <p className="text-red-600 text-xs">
+                  {errors.firstname?.message}
+                </p>
               </div>
               <div className="flex flex-col gap-1.5">
                 <Label>Last Name</Label>
-                <Input {...register("lastname")} />
+                <Input
+                  {...register("lastname", { required: "Required Field" })}
+                />
+                <p className="text-red-600 text-xs">
+                  {errors.lastname?.message}
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col space-y-1.5">
               <div className="flex flex-row justify-between">
                 <Label>Bio</Label>
-                <Label>Max length: 200 Characters</Label>
+                <Label>
+                  {bio.length}/ {maxLength} Characters
+                </Label>
               </div>
               <Textarea maxLength="200" {...register("bio")} />
             </div>
 
             <div className="flex flex-col space-y-1.5">
               <Label>Username</Label>
-              <Input {...register("username")} />
+              <Input
+                {...register("username", { required: "Required Field" })}
+              />
+              <p className="text-red-600 text-xs">{errors.username?.message}</p>
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label>E-mail Address</Label>
-              <Input {...register("email")} />
-
+              <Input
+                {...register("email", {
+                  required: "Please enter your email",
+                  pattern: {
+                    value: /^[\w.-]+@([\w-]+\.)+[A-Za-z]{2,4}$/,
+                    message: "Enter a valid email address",
+                  },
+                })}
+              />
+              <p className="text-red-600 text-xs">{errors.email?.message}</p>
               {/* <div className="flex flex-row gap-2">
                 <Checkbox id="publicMail" />
                 <Label for="publicMail">Share Email Publicly</Label>
