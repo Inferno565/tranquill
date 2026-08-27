@@ -18,7 +18,7 @@ export const login = async (req, res, next) => {
         }
         let checkAuth = await result.comparePassword(password)
         if (!checkAuth) {
-            throw new AppError("Invalid login credentials", 401)
+            throw new AppError("Invalid credentials", 401)
             // res.status(401).json({ message: "Invalid login credentials" })
         } else {
             const token = createToken(result._id)
