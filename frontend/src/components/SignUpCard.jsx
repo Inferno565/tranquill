@@ -38,7 +38,7 @@ export default function SignUpCard() {
   };
 
   const onsubmit = async (data) => {
-    const res = await fetch("http://localhost:5000/register", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },

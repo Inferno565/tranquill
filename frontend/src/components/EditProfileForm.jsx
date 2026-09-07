@@ -25,7 +25,7 @@ export default function EditProfileForm() {
   const token = context.token;
 
   const getUserData = async () => {
-    const result = await fetch("http://localhost:5000/update", {
+    const result = await fetch(`${import.meta.env.VITE_API_URL}/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function EditProfileForm() {
   }, [isDirty]);
 
   const onSubmit = async (data) => {
-    const result = await fetch(`${import.meta.env.VITE_API_URL}update`, {
+    const result = await fetch(`${import.meta.env.VITE_API_URL}/update`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
